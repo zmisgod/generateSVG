@@ -2,6 +2,16 @@
 
 这主要是一些常用工具
 
+## 启动
+```
+git clone
+cd your/path/floder
+npm install
+pm2 start bin/www
+```
+
+pm2的相关命令自己Google
+
 ## 接口列表
 - [ ] png转svg路径(path)
 - [ ] svg转jpg、png图片
