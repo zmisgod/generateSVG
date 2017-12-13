@@ -1,18 +1,17 @@
 {
   "name": "nodeservice",
-  "version": "1.0.0",
-  "description": "my node service",
-  "main": "index.js",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./bin/www"
   },
-  "repository": {
-    "type": "git",
-    "url": "zmisgod"
-  },
-  "keywords": [
-    "nodejs"
-  ],
-  "author": "zmisgod",
-  "license": "MIT"
+  "dependencies": {
+    "body-parser": "~1.18.2",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "express": "~4.15.5",
+    "jade": "~1.11.0",
+    "morgan": "~1.9.0",
+    "serve-favicon": "~2.4.5"
+  }
 }
