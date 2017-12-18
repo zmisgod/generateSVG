@@ -74,4 +74,9 @@ router.post('/svgToImages', (req, res, next) => {
         console.log(err)
     })
 })
+
+//字体转svg path
+router.post('/fontToSvgPath', (req, res, next) => {
+
+})
 module.exports = router;
