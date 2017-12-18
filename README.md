@@ -13,6 +13,7 @@ potrace (convert ppm to svg)
 git clone
 cd your/path/floder
 npm install
+npm install pm2 -g
 pm2 start bin/www
 ```
 
@@ -55,4 +56,5 @@ params:
 ## 联系
 
 <a href="https://weibo.com/zmisgod">@zmisgod</a>
+
 <a href="https://zmis.me">zmis.me新博客</a>
