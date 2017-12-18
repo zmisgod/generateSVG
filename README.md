@@ -30,9 +30,9 @@ width svg的宽度，例如300
 height svg的高度，例如300
 ```
 
-- [x] svg转jpg、png图片
+- [ ] svg转jpg、png图片
 
-- [x] font转path
+- [ ] font转path
 
 
 ## 计划
