@@ -59,7 +59,7 @@ router.post('/pngToSvg', (req, res, next) => {
 //svg转换jpg或者png
 router.post('/svgToImages', (req, res, next) => {
     let svgPath = req.body.svgPath
-    let outPutFileName = req.body.OutPutFileName
+    let outPutFileName = req.body.outPutFileName
     let outPutFloder = req.body.outPutFloder
     let outPutWidth = req.body.width
     let outPutHeight = req.body.height
