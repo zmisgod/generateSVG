@@ -2,6 +2,11 @@
 
 这主要是一些常用工具
 
+## 需要软件
+
+convert (convert png to ppm)
+potrace (convert ppm to svg)
+
 ## 启动
 ```
 git clone
@@ -13,7 +18,15 @@ pm2 start bin/www
 pm2的相关命令自己Google
 
 ## 接口列表
-- [ ] png转svg路径(path)
+- [-] png转svg路径(path)
+```
+router:127.0.0.1:3000/tools/pngToSvg
+method:POST
+params:
+- img_url图片url，例如https://d30y9cdsu7xlg0.cloudfront.net/png/120046-200.png
+- width svg的宽度，例如300
+- height svg的高度，例如300
+```
 - [ ] svg转jpg、png图片
 - [ ] font转path
 
