@@ -4,7 +4,8 @@
 
 ## 需要软件
 
-convert (convert png to ppm)
+imagemagick (convert png to ppm)
+
 potrace (convert ppm to svg)
 
 ## 启动
