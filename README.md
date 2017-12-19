@@ -1,6 +1,6 @@
 # nodeService
 
-这主要是一些常用工具,比如：svgToPng,svgToJpg,pngTpSvg,fontToSvg
+这主要是一些常用工具,比如：svgToPng✅,svgToJpg✅,pngTpSvg✅,fontToSvg✅
 
 ## 需要软件
 
@@ -45,9 +45,22 @@ params:
         convertQuality 转换图片的质量，例如100%（以百分号结尾）
 ```
 
-- [ ] font转path
+- [x] font转path
+```
+router:127.0.0.1:3000/tools/fontToSvgPath
+method:POST
+params:
+        fontObj 字体对象数组，包含对象结构
+                font_url: 字体的路径，在upload文件夹中,比如：test_font.otf(upload文件夹中自带的字体文件)
+                text: 文字
+                size: 字体大小，单位px
+                letter_spacing: 字体间距，单位em，请注意em与px的单位转换
+                anchor: 对象在坐标中的锚点(left, center, right) + (baseline, top, middle, bottom)
+```
 
 ## 计划
+
+2017年12月20日：写完了，等我24号考完试后，完成之前说的，做一个接口服务。go go go
 
 > 2017年12月19日：看来不用等到我考完试了，一会就能把它写完，等我写完，会将这个写成一个公用接口，供需要的人使用，会使用redis做中间件，然后客户端准备使用go提供api，转换的就是用nodejs来做处理服务。
 
