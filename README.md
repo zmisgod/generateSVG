@@ -1,6 +1,6 @@
 # nodeService
 
-这主要是一些常用工具,比如：svgToPng✅,svgToJpg✅,pngTpSvg✅,fontToSvg✅
+这主要是一些常用工具,比如：svgToPng✅, svgToJpg✅, pngTpSvg✅, fontToSvg✅
 
 ## 需要软件
 
