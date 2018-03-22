@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+package nodeservice;
+
+service NodeService {
+    rpc Png2Svg (Png2SvgRequest) returns (Png2SvgResponse){}
+    rpc Svg2Images (Svg2ImagesRequest) returns (Svg2ImagesResponse){}
+    rpc Font2SvgPath (Font2SvgPathRequest) returns (Font2SvgPathResponse){}
+}
+
+message Png2SvgRequest {
+    string img_url = 1;//图片url，例如https://d30y9cdsu7xlg0.cloudfront.net/png/120046-200.png
+    int32 width = 2;//导出的svg宽度
+    int32 height = 3;//导出的svg高度
+}
+
+message Png2SvgResponse {
+    int32 code = 1;
+    string message = 2;
+}
+
+message Svg2ImagesRequest{
+    string svgPath = 1;
+    string outPutFileName  = 2;//输出文件的文件名称（不包括扩展名）
+    string outPutFloder = 3;//输出的要转换图片的文件夹
+    string type = 4;//输出文件的文件类型（仅支持jpg与png）
+    int32 width = 5 ;//svg的宽度，例如300
+    int32 height = 6;//svg的高度，例如300
+    string convertQuality = 7;//转换图片的质量，例如100%（以百分号结尾）
+}
+
+message Svg2ImagesResponse{
+    int32 code = 1;
+    string message = 2;
+}
+
+message Font2SvgPathRequest {
+    string font_url = 1;//字体的路径，在upload文件夹中,比如：test_font.otf(upload文件夹中自带的字体文件)
+    string text = 2; //文字
+    int32 size = 3;//字体大小，单位px
+    int32 letter_spacing = 4;//字体间距，单位em，请注意em与px的单位转换
+    string anchor = 5;//对象在坐标中的锚点(left, center, right) + (baseline, top, middle, bottom)
+}
+
+message Font2SvgPathResponse {
+    int32 code = 1;
+    string message = 2;
+}
