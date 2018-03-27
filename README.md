@@ -1,5 +1,7 @@
 # nodeService for gRPC
 
+> you can also use HTTP interface , just see [http version](https://github.com/zmisgod/nodeService/tree/http)
+
 ## install
 
 2 software required , you can easily install it on macOS (you need install ```homebrew``` first)
@@ -24,6 +26,6 @@ node client/svg2Images.js
 
 ## contact
 
-<a href="https://weibo.com/zmisgod">@zmisgod</a>
+[@zmisgod](https://weibo.com/zmisgod)
 
-<a href="https://zmis.me">zmis.me新博客</a>
+[zmis.me新博客](https://zmis.me)
