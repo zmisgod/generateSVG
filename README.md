@@ -24,6 +24,18 @@ node client/png2svg.js
 node client/svg2Images.js
 ```
 
+## demo
+
+使用golang进行远程调用此服务
+首先生成nodeservice.pb.go文件
+```
+protoc --go_out=plugins=grpc:. nodeservice.proto 
+//然后将生成的文件放到 $GOPATH/src/github.com/zmisgod/test 文件夹中(没有请新建)）
+
+node server/nodeservice_server.js
+go run main.go
+```
+
 ## contact
 
 [@zmisgod](https://weibo.com/zmisgod)

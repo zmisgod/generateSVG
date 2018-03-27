@@ -9,47 +9,47 @@ service NodeService {
 }
 
 message Png2SvgRequest {
-    required string img_url = 1;//图片url，例如https://d30y9cdsu7xlg0.cloudfront.net/png/120046-200.png
-    optional int32 width = 2;//导出的svg宽度
-    optional int32 height = 3;//导出的svg高度
+    string img_url = 1;//图片url，例如https://d30y9cdsu7xlg0.cloudfront.net/png/120046-200.png
+    int32 width = 2;//导出的svg宽度
+    int32 height = 3;//导出的svg高度
 }
 
 message Png2SvgResponse {
-    required int32 code = 1;
-    required string msg = 2;
-    optional string svgAddress = 3;
-    optional string pngAddress = 4;
-    optional string ppmAddress = 5;
-    optional string svgSourceCode = 6;
+     int32 code = 1;
+     string msg = 2;
+     string svgAddress = 3;
+     string pngAddress = 4;
+     string ppmAddress = 5;
+     string svgSourceCode = 6;
 }
 
 message Svg2ImagesRequest{
-    required string svgPath = 1;
-    required string outPutFileName  = 2;//输出文件的文件名称（不包括扩展名）
-    required string outPutFloder = 3;//输出的要转换图片的文件夹
-    required string type = 4;//输出文件的文件类型（仅支持jpg与png）
-    required int32 width = 5 ;//svg的宽度，例如300
-    required int32 height = 6;//svg的高度，例如300
-    required string convertQuality = 7;//转换图片的质量，例如100%（以百分号结尾）
+     string svgPath = 1;
+     string outPutFileName  = 2;//输出文件的文件名称（不包括扩展名）
+     string outPutFloder = 3;//输出的要转换图片的文件夹
+     string type = 4;//输出文件的文件类型（仅支持jpg与png）
+     int32 width = 5 ;//svg的宽度，例如300
+     int32 height = 6;//svg的高度，例如300
+     string convertQuality = 7;//转换图片的质量，例如100%（以百分号结尾）
 }
 
 message Svg2ImagesResponse{
-    required int32 code = 1;
-    required string msg = 2;
-    optional string imgAddress = 3;
+     int32 code = 1;
+     string msg = 2;
+     string imgAddress = 3;
 }
 
 message Font2SvgPathRequest {
-    required string font_url = 1;//字体的路径，在upload文件夹中,比如：test_font.otf(upload文件夹中自带的字体文件)
-    required string text = 2; //文字
-    required int32 size = 3;//字体大小，单位px
-    required int32 letter_spacing = 4;//字体间距，单位em，请注意em与px的单位转换
-    required string anchor = 5;//对象在坐标中的锚点(left, center, right) + (baseline, top, middle, bottom)
+     string font_url = 1;//字体的路径，在upload文件夹中,比如：test_font.otf(upload文件夹中自带的字体文件)
+     string text = 2; //文字
+     int32 size = 3;//字体大小，单位px
+     int32 letter_spacing = 4;//字体间距，单位em，请注意em与px的单位转换
+     string anchor = 5;//对象在坐标中的锚点(left, center, right) + (baseline, top, middle, bottom)
 }
 
 message Font2SvgPathResponse {
-    required int32 code = 1;
-    required string msg = 2;
-    required string path = 3;
-    required string d = 4;
+     int32 code = 1;
+     string msg = 2;
+     string path = 3;
+     string d = 4;
 }

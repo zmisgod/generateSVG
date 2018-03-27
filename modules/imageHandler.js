@@ -25,6 +25,8 @@ const imageHandler = {
                         })
                 })
             })
+        }).catch(err => {
+            reject(err)
         })
     },
     //png转换成svg【先转换成ppm然后转换成带path的svg的源码】
