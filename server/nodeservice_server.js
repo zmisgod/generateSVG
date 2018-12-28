@@ -8,7 +8,7 @@ var fontHandler = require('../modules/fontHandler')
 
 function Png2Svg(call, callback) {
     let img_url = call.request.img_url
-    let img_type = 'png'
+    let img_type = 'gif'
     let width = call.request.width
     let height = call.request.height
     if (img_url == '') {
@@ -24,7 +24,7 @@ function Png2Svg(call, callback) {
     let file_name = Date.now()
     let file_floder = APP_CONFIG.APP_PATH + '/upload/' + nowYear + '/' + nowMonth + '/' + nowDay + '/'
     imageHandler.getPngData(img_url, img_type, file_floder, file_name).then(file_path => {
-        imageHandler.convertPngToSvg(file_path, file_floder, file_name, width, height).then(function(svgSourceCode) {
+        imageHandler.convertPngToSvg(file_path, file_floder, file_name, width, height).then(function (svgSourceCode) {
             return callback(null, {
                 code: 1,
                 msg: 'successful',
@@ -56,7 +56,7 @@ function Svg2Images(call, callback) {
     let type = call.request.type
     let convertQuality = call.request.convertQuality
 
-    let originalFilePath = outPutFloder +'/'+ outPutFileName + '.' + type
+    let originalFilePath = outPutFloder + '/' + outPutFileName + '.' + type
     imageHandler.convertSvgToImages(svgPath, originalFilePath, outPutWidth, outPutHeight, convertQuality).then((convResult) => {
         callback(null, {
             code: 1,
@@ -72,21 +72,19 @@ function Svg2Images(call, callback) {
 }
 
 function Font2SvgPath(call, callback) {
-    let fontObject = [
-        {
-            font_url: call.request.font_url, 
-            text: call.request.text, 
-            size: call.request.size, 
-            letter_spacing: call.request.letter_spacing, 
-            anchor: call.request.anchor
-        }
-    ]
+    let fontObject = [{
+        font_url: call.request.font_url,
+        text: call.request.text,
+        size: call.request.size,
+        letter_spacing: call.request.letter_spacing,
+        anchor: call.request.anchor
+    }]
 
-    fontHandler.convertAllFont(fontObject).then(function(result) {
+    fontHandler.convertAllFont(fontObject).then(function (result) {
         let data = []
         let fontObj = []
 
-        result.map(function(value, indexs) {
+        result.map(function (value, indexs) {
             if (value && value.font) {
                 let fontWidthInfo = value.font.getAdvanceWidth(fontObject[indexs].text, fontObject[indexs].size)
                 let attr = {
@@ -110,9 +108,9 @@ function Font2SvgPath(call, callback) {
             code: 1,
             msg: 'ok',
             path: fontObject[0].path,
-            d: fontObject[0].d, 
+            d: fontObject[0].d,
         })
-    }).catch(function(err) {
+    }).catch(function (err) {
         callback(null, {
             code: 2,
             msg: err
@@ -120,9 +118,13 @@ function Font2SvgPath(call, callback) {
     })
 }
 
-function main () {
+function main() {
     var server = new grpc.Server()
-    server.addService(nodeservice.NodeService.service, {Png2Svg:Png2Svg, Svg2Images:Svg2Images, Font2SvgPath:Font2SvgPath})
+    server.addService(nodeservice.NodeService.service, {
+        Png2Svg: Png2Svg,
+        Svg2Images: Svg2Images,
+        Font2SvgPath: Font2SvgPath
+    })
     server.bind("0.0.0.0:50051", grpc.ServerCredentials.createInsecure())
     server.start()
 }
