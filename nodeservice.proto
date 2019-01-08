@@ -51,5 +51,4 @@ message Font2SvgPathResponse {
      int32 code = 1;
      string msg = 2;
      string path = 3;
-     string d = 4;
 }

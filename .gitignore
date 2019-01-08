@@ -2,3 +2,4 @@ node_modules
 image/*
 upload/2018/*
 upload/tem/*
+/package-lock.json

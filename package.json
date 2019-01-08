@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "dependencies": {
+    "@grpc/proto-loader": "^0.3.0",
     "body-parser": "^1.18.3",
     "cheerio": "^1.0.0-rc.2",
     "fs-extra": "^5.0.0",

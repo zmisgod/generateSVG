@@ -1,11 +1,20 @@
 var PROTO_PATH = __dirname + '/../nodeservice.proto';
 var APP_CONFIG = require('../config/index')
 
+var protoLoader = require('@grpc/proto-loader');
 var grpc = require("grpc")
-var node_service = grpc.load(PROTO_PATH).nodeservice;
+var packageDefinition = protoLoader.loadSync(
+    PROTO_PATH, {
+        keepCase: true,
+        longs: String,
+        enums: String,
+        defaults: true,
+        oneofs: true
+    });
+var nodeservice = grpc.loadPackageDefinition(packageDefinition).nodeservice;
 
 function main() {
-    var client = new node_service.NodeService('localhost:50051', grpc.credentials.createInsecure());
+    var client = new nodeservice.NodeService('localhost:50051', grpc.credentials.createInsecure());
     var sendObj = {
         svgPath: APP_CONFIG.APP_PATH + '/../upload/2018/3/25/1521980696465.svg',
         outPutFileName: 'starzmisgod', //输出文件的文件名称（不包括扩展名）

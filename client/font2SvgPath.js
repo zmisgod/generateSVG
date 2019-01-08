@@ -1,11 +1,20 @@
 var PROTO_PATH = __dirname + '/../nodeservice.proto';
 var APP_CONFIG = require('../config/index')
 
+var protoLoader = require('@grpc/proto-loader');
 var grpc = require("grpc")
-var node_service = grpc.load(PROTO_PATH).nodeservice;
+var packageDefinition = protoLoader.loadSync(
+    PROTO_PATH, {
+        keepCase: true,
+        longs: String,
+        enums: String,
+        defaults: true,
+        oneofs: true
+    });
+var nodeservice = grpc.loadPackageDefinition(packageDefinition).nodeservice;
 
 function main() {
-    var client = new node_service.NodeService('localhost:50051', grpc.credentials.createInsecure());
+    var client = new nodeservice.NodeService('localhost:50051', grpc.credentials.createInsecure());
     var sandData = {
         font_url: 'test_font.otf',
         text: 'star zmisgod',
@@ -14,12 +23,7 @@ function main() {
         anchor: 'left top'
     }
     client.Font2SvgPath(sandData, (err, response) => {
-        if (response.code == 1) {
-            console.log(response.path)
-            console.log(response.d)
-        } else {
-            console.log(response.msg)
-        }
+        console.log(response)
     })
 }
 

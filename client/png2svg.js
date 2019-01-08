@@ -1,10 +1,19 @@
 var PROTO_PATH = __dirname + '/../nodeservice.proto';
 
+var protoLoader = require('@grpc/proto-loader');
 var grpc = require("grpc")
-var node_service = grpc.load(PROTO_PATH).nodeservice;
+var packageDefinition = protoLoader.loadSync(
+    PROTO_PATH, {
+        keepCase: true,
+        longs: String,
+        enums: String,
+        defaults: true,
+        oneofs: true
+    });
+var nodeservice = grpc.loadPackageDefinition(packageDefinition).nodeservice;
 
 function main() {
-    var client = new node_service.NodeService('localhost:50051', grpc.credentials.createInsecure());
+    var client = new nodeservice.NodeService('localhost:50051', grpc.credentials.createInsecure());
 
     client.Png2Svg({
         // img_url: "http://potrace.sourceforge.net/img/icosasoft.gif",

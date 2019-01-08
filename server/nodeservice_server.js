@@ -1,7 +1,18 @@
-var PROTO_PATTH = __dirname + '/../nodeservice.proto'
+var PROTO_PATH = __dirname + '/../nodeservice.proto'
 
-var grpc = require('grpc')
-var nodeservice = grpc.load(PROTO_PATTH).nodeservice
+const protoLoader = require('@grpc/proto-loader');
+const grpc = require('grpc');
+
+var packageDefinition = protoLoader.loadSync(
+    PROTO_PATH, {
+        keepCase: true,
+        longs: String,
+        enums: String,
+        defaults: true,
+        oneofs: true
+    });
+var nodeservice = grpc.loadPackageDefinition(packageDefinition).nodeservice;
+
 var APP_CONFIG = require('../config/index')
 var imageHandler = require('../modules/imageHandler')
 var fontHandler = require('../modules/fontHandler')
@@ -80,10 +91,9 @@ function Font2SvgPath(call, callback) {
         anchor: call.request.anchor
     }]
 
-    fontHandler.convertAllFont(fontObject).then(function (result) {
+    fontHandler.convertAllFont(fontObject).then(result => {
         let data = []
         let fontObj = []
-
         result.map(function (value, indexs) {
             if (value && value.font) {
                 let fontWidthInfo = value.font.getAdvanceWidth(fontObject[indexs].text, fontObject[indexs].size)
@@ -99,7 +109,6 @@ function Font2SvgPath(call, callback) {
                 let d = value.getD(fontObject[indexs].text, attr)
                 let bounding_box = value.font.getPath(fontObject[indexs].text, 0, 0, fontObject[indexs].size * 1).getBoundingBox()
                 fontObject[indexs].path = path
-                fontObject[indexs].d = d
                 fontObject[indexs].metrics = svgWidthAndHeight
                 fontObject[indexs].bounding_box = bounding_box
             }
@@ -108,9 +117,8 @@ function Font2SvgPath(call, callback) {
             code: 1,
             msg: 'ok',
             path: fontObject[0].path,
-            d: fontObject[0].d,
         })
-    }).catch(function (err) {
+    }).catch(err => {
         callback(null, {
             code: 2,
             msg: err

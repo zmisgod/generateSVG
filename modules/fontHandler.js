@@ -12,7 +12,11 @@ const fontHandler = {
     getFontInfo(fontInfo) {
         return new Promise((resolve, reject) => {
             TextToSVG.load(APP_CONFIG.APP_PATH + '/../upload/' + fontInfo.font_url, (err, textToSvgObj) => {
-                resolve(textToSvgObj)
+                if (err !== null) {
+                    reject(err)
+                } else {
+                    resolve(textToSvgObj)
+                }
             })
         })
     }
