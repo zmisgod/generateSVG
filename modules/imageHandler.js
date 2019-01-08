@@ -10,7 +10,6 @@ const imageHandler = {
     //根据图片地址下载此图片文件
     getPngData(imgUrl, fileType, fileFloder, fileName) {
         return new Promise((resolve, reject) => {
-
             https.get(imgUrl, function (res) {
                 let imgData = ''
                 res.setEncoding("binary")
